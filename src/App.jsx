@@ -12,7 +12,8 @@ import {
   MdDownload,
   MdMenu,
   MdLightMode,
-  MdDarkMode
+  MdDarkMode,
+  MdDescription
 } from "react-icons/md";
 import { 
   FaLinkedin, 
@@ -26,7 +27,12 @@ import {
   FaGithub,
   FaCode,
   FaDatabase,
-  FaMobile
+  FaMobile,
+  FaTrophy,
+  FaCertificate,
+  FaGraduationCap,
+  FaProjectDiagram,
+  FaAward
 } from "react-icons/fa";
 import { 
   SiCplusplus, 
@@ -332,8 +338,334 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Projects Section */}
       <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Projects
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ y: -10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <FaProjectDiagram className="text-blue-500 text-2xl" />
+                <h3 className="text-xl font-semibold">DineQR – Digital Restaurant Management System</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                A comprehensive digital restaurant management system that streamlines operations through QR-based menus and real-time order tracking.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">React.js</span>
+                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">Node.js</span>
+                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">MongoDB</span>
+              </div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Role: Team Leader & Frontend Developer</p>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ y: -10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <FaProjectDiagram className="text-green-500 text-2xl" />
+                <h3 className="text-xl font-semibold">MICO Hospital Website</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                A modern hospital website with integrated appointment booking system and AI-powered chatbot for patient assistance.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">HTML</span>
+                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">CSS</span>
+                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">AI Chatbot</span>
+              </div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Role: Team Leader & Frontend Developer</p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Education
+          </motion.h2>
+          <motion.div 
+            className="space-y-6"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ x: 10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-4">
+                <FaGraduationCap className="text-primary text-3xl" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold">B.Tech CSE</h3>
+                  <p className="text-gray-600 dark:text-gray-300">Chandigarh Group of Colleges, Landran</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">2023–2027</p>
+                </div>
+                <span className="bg-primary text-white px-4 py-2 rounded-full font-semibold">8.53 CGPA</span>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ x: 10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-4">
+                <MdSchool className="text-secondary text-3xl" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold">Intermediate</h3>
+                  <p className="text-gray-600 dark:text-gray-300">KK Public School</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">2021-2023</p>
+                </div>
+                <span className="bg-secondary text-white px-4 py-2 rounded-full font-semibold">82.75%</span>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ x: 10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-4">
+                <MdSchool className="text-accent text-3xl" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold">Matriculation</h3>
+                  <p className="text-gray-600 dark:text-gray-300">S.T. Thomas School</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">2020-2021</p>
+                </div>
+                <span className="bg-accent text-white px-4 py-2 rounded-full font-semibold">87%</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Achievements
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              variants={scaleIn}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+            >
+              <FaTrophy className="text-yellow-500 text-3xl" />
+              <p className="text-gray-700 dark:text-gray-300 font-medium">3-Star Badge in C++ & Problem Solving on HackerRank</p>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              variants={scaleIn}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+            >
+              <FaTrophy className="text-yellow-500 text-3xl" />
+              <p className="text-gray-700 dark:text-gray-300 font-medium">17 Specialist Badges on Coding Ninjas</p>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              variants={scaleIn}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+            >
+              <FaCertificate className="text-green-500 text-3xl" />
+              <p className="text-gray-700 dark:text-gray-300 font-medium">NPTEL Certification in Data Structures using C</p>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              variants={scaleIn}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+            >
+              <FaAward className="text-blue-500 text-3xl" />
+              <p className="text-gray-700 dark:text-gray-300 font-medium">Selected for Semifinal Round of SIH 2024</p>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              variants={scaleIn}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+            >
+              <MdStar className="text-yellow-500 text-3xl" />
+              <p className="text-gray-700 dark:text-gray-300 font-medium">3× College Topper on Naukri 360 Leaderboard</p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Certifications
+          </motion.h2>
+          <motion.div 
+            className="space-y-6"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ x: 10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-4">
+                <FaCertificate className="text-blue-500 text-3xl" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold">Introduction to Data Science</h3>
+                  <p className="text-gray-600 dark:text-gray-300">Simplilearn</p>
+                </div>
+                <div className="text-green-500 text-2xl">✓</div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ x: 10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-4">
+                <FaCertificate className="text-purple-500 text-3xl" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold">Career Essentials in Generative AI</h3>
+                  <p className="text-gray-600 dark:text-gray-300">Microsoft & LinkedIn</p>
+                </div>
+                <div className="text-green-500 text-2xl">✓</div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ x: 10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-4">
+                <FaCertificate className="text-green-500 text-3xl" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold">Introduction to Artificial Intelligence</h3>
+                  <p className="text-gray-600 dark:text-gray-300">LinkedIn Learning</p>
+                </div>
+                <div className="text-green-500 text-2xl">✓</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Resume Section */}
+      <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Resume
+          </motion.h2>
+          <motion.div 
+            className="bg-white dark:bg-gray-700 rounded-lg p-8 shadow-lg text-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            whileHover={{ y: -5 }}
+          >
+            <MdDescription className="text-6xl text-primary mx-auto mb-6" />
+            <h3 className="text-3xl font-bold mb-4">Vaibhav Mehta - Resume</h3>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              A comprehensive overview of my education, skills, projects, and achievements in a professional format.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="text-center">
+                <FaGraduationCap className="text-2xl text-primary mx-auto mb-2" />
+                <div className="font-semibold">Education</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">B.Tech CSE</div>
+              </div>
+              <div className="text-center">
+                <FaCode className="text-2xl text-secondary mx-auto mb-2" />
+                <div className="font-semibold">Skills</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Full-Stack Development</div>
+              </div>
+              <div className="text-center">
+                <FaTrophy className="text-2xl text-accent mx-auto mb-2" />
+                <div className="font-semibold">Achievements</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Multiple Certifications</div>
+              </div>
+            </div>
+            
+            <motion.button
+              className="bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-8 rounded-lg text-lg flex items-center gap-3 mx-auto"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <MdDownload size={24} />
+              Download Resume (PDF)
+            </motion.button>
+            
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
+              Last updated: {new Date().toLocaleDateString()}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
             className="text-3xl font-bold text-center mb-12"
