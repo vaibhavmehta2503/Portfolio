@@ -140,7 +140,7 @@ const Navigation = ({ darkMode, toggleDarkMode }) => {
                  )}
               </motion.button>
             ))}
-          </div>
+        </div>
 
           <div className="flex items-center space-x-4">
             <motion.button
@@ -156,8 +156,8 @@ const Navigation = ({ darkMode, toggleDarkMode }) => {
               <button className="p-2 rounded-lg glass">
                 ☰
               </button>
-            </div>
-          </div>
+        </div>
+        </div>
         </div>
       </div>
     </motion.nav>
@@ -174,7 +174,7 @@ const HeroSection = () => {
       <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+    animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-12"
         >
@@ -236,7 +236,7 @@ const HeroSection = () => {
         >
           🔗 Connect on LinkedIn
         </motion.a>
-      </div>
+              </div>
       
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
@@ -245,7 +245,7 @@ const HeroSection = () => {
       >
         <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce"></div>
-        </div>
+              </div>
       </motion.div>
     </section>
   );
@@ -287,13 +287,13 @@ const AboutSection = () => {
                   <div className="text-center text-white">
                     <div className="text-6xl mb-2">👨‍💻</div>
                     <div className="text-sm font-medium">Full-Stack Developer</div>
-                  </div>
-                </div>
+              </div>
+            </div>
               </div>
             </div>
           </div>
         </motion.div>
-      </div>
+        </div>
     </section>
   );
 };
@@ -388,7 +388,7 @@ const SkillsSection = () => {
             </motion.div>
           ))}
         </div>
-      </div>
+              </div>
     </section>
   );
 };
@@ -465,10 +465,10 @@ const ProjectsSection = () => {
                       {tech}
                     </span>
                   ))}
-                </div>
+            </div>
               </div>
               
-              <div>
+            <div>
                 <h4 className="font-semibold text-gray-800 dark:text-white mb-3 text-center">Key Features:</h4>
                 <ul className="space-y-2">
                   {project.features.map((feature) => (
@@ -484,7 +484,7 @@ const ProjectsSection = () => {
                 <div className="text-white text-center">
                   <div className="text-2xl mb-2">🔗</div>
                   <div className="font-semibold">View Project</div>
-                </div>
+            </div>
               </div>
             </motion.div>
           ))}
@@ -523,10 +523,10 @@ const EducationSection = () => {
   return (
     <section id="education" className="py-24">
       <div className="max-w-5xl mx-auto px-6">
-        <motion.div
+          <motion.div
           initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -559,7 +559,7 @@ const EducationSection = () => {
                     </p>
                   </div>
                 </div>
-                <div>
+            <div>
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg">
                     {edu.score}
                   </span>
@@ -567,8 +567,8 @@ const EducationSection = () => {
               </div>
             </motion.div>
           ))}
-        </div>
-      </div>
+              </div>
+            </div>
     </section>
   );
 };
@@ -611,8 +611,8 @@ const AchievementsSection = () => {
               <p className="text-gray-700 dark:text-gray-300 font-medium">
                 {achievement.text}
               </p>
-            </motion.div>
-          ))}
+          </motion.div>
+        ))}
         </div>
       </div>
     </section>
@@ -679,8 +679,8 @@ const ResumeSection = () => {
                 <div className="text-2xl mb-2">🏆</div>
                 <div className="font-semibold text-gray-800 dark:text-white">Achievements</div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">Multiple Certifications</div>
-              </div>
-            </div>
+      </div>
+    </div>
             
             <motion.button
               onClick={handleDownload}
@@ -742,9 +742,9 @@ const CertificationsSection = () => {
                   <p className="text-gray-600 dark:text-gray-300">
                     {cert.issuer}
                   </p>
-                </div>
+        </div>
                 <div className="text-green-500 text-2xl">✓</div>
-              </div>
+        </div>
             </motion.div>
           ))}
         </div>
@@ -828,14 +828,14 @@ const ContactSection = () => {
                   <p className="font-semibold text-gray-800 dark:text-white">LinkedIn</p>
                   <a 
                     href="https://www.linkedin.com/in/vaibhav-mehta-8a8363283" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                     className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
+        >
                     Connect on LinkedIn
-                  </a>
-                </div>
-              </div>
+        </a>
+      </div>
+    </div>
             </div>
           </motion.div>
           
