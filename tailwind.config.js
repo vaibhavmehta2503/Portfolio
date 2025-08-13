@@ -1,19 +1,17 @@
-
+/** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "class",
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}"
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        royal: "#0a192f", // Deep Royal Blue
-        gold: "#f5c518", // Elegant Gold
-        night: "#020817", // Dark navy
-      },
-      boxShadow: {
-        gold: "0 0 15px rgba(245, 197, 24, 0.5)",
+        primary: "#3b82f6",
+        secondary: "#8b5cf6",
+        accent: "#10b981",
+        dark: "#1f2937",
+        light: "#f9fafb",
       },
     },
   },
