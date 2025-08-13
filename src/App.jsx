@@ -651,8 +651,8 @@ function App() {
             <motion.button
               onClick={() => {
                 const link = document.createElement('a');
-                link.href = '/vaibhavog.pdf';
-                link.download = 'vaibhavog.pdf';
+                link.href = '/Resume.pdf';
+                link.download = 'Resume.pdf';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
