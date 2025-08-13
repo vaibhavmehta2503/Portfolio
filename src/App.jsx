@@ -226,7 +226,7 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
             className="text-3xl font-bold text-center mb-12"
@@ -245,7 +245,7 @@ function App() {
             viewport={{ once: true }}
           >
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
@@ -274,7 +274,7 @@ function App() {
             </motion.div>
             
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
@@ -307,7 +307,7 @@ function App() {
             </motion.div>
             
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
@@ -339,7 +339,7 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 px-4 bg-blue-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
             className="text-3xl font-bold text-center mb-12"
@@ -358,7 +358,7 @@ function App() {
             viewport={{ once: true }}
           >
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
@@ -378,7 +378,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
@@ -401,7 +401,7 @@ function App() {
       </section>
 
       {/* Education Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
             className="text-3xl font-bold text-center mb-12"
@@ -420,7 +420,7 @@ function App() {
             viewport={{ once: true }}
           >
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ x: 10, scale: 1.02 }}
             >
@@ -436,7 +436,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ x: 10, scale: 1.02 }}
             >
@@ -452,7 +452,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ x: 10, scale: 1.02 }}
             >
@@ -471,7 +471,7 @@ function App() {
       </section>
 
       {/* Achievements Section */}
-      <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 px-4 bg-green-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
             className="text-3xl font-bold text-center mb-12"
@@ -490,7 +490,7 @@ function App() {
             viewport={{ once: true }}
           >
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
               variants={scaleIn}
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
@@ -499,7 +499,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
               variants={scaleIn}
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
@@ -508,7 +508,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
               variants={scaleIn}
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
@@ -517,7 +517,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
               variants={scaleIn}
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
@@ -526,7 +526,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg flex items-center gap-4"
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
               variants={scaleIn}
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
@@ -538,7 +538,7 @@ function App() {
       </section>
 
       {/* Certifications Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
             className="text-3xl font-bold text-center mb-12"
@@ -557,7 +557,7 @@ function App() {
             viewport={{ once: true }}
           >
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ x: 10, scale: 1.02 }}
             >
@@ -572,7 +572,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ x: 10, scale: 1.02 }}
             >
@@ -587,7 +587,7 @@ function App() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
               variants={scaleIn}
               whileHover={{ x: 10, scale: 1.02 }}
             >
@@ -605,7 +605,7 @@ function App() {
       </section>
 
       {/* Resume Section */}
-      <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 px-4 bg-blue-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
             className="text-3xl font-bold text-center mb-12"
@@ -617,7 +617,7 @@ function App() {
             Resume
           </motion.h2>
           <motion.div 
-            className="bg-white dark:bg-gray-700 rounded-lg p-8 shadow-lg text-center"
+            className="bg-white dark:bg-gray-700 rounded-lg p-8 shadow-lg text-center border border-gray-200 dark:border-gray-600"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -665,7 +665,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
             className="text-3xl font-bold text-center mb-12"
@@ -698,7 +698,7 @@ function App() {
               <h3 className="text-xl font-semibold mb-6">Get In Touch</h3>
               <div className="space-y-4">
                 <motion.div 
-                  className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg"
+                  className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-lg border border-gray-200 dark:border-gray-600"
                   whileHover={{ x: 10, scale: 1.02 }}
                 >
                   <div className="flex items-center gap-3">
@@ -713,7 +713,7 @@ function App() {
                 </motion.div>
                 
                 <motion.div 
-                  className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg"
+                  className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-lg border border-gray-200 dark:border-gray-600"
                   whileHover={{ x: 10, scale: 1.02 }}
                 >
                   <div className="flex items-center gap-3">
@@ -726,7 +726,7 @@ function App() {
                 </motion.div>
                 
                 <motion.div 
-                  className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg"
+                  className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-lg border border-gray-200 dark:border-gray-600"
                   whileHover={{ x: 10, scale: 1.02 }}
                 >
                   <div className="flex items-center gap-3">
