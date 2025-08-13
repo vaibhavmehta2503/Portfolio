@@ -649,12 +649,20 @@ function App() {
             </div>
             
             <motion.button
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/vaibhavog.pdf';
+                link.download = 'vaibhavog.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
               className="bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-8 rounded-lg text-lg flex items-center gap-3 mx-auto"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               <MdDownload size={24} />
-              Download Resume (PDF)
+              Download Resume
             </motion.button>
             
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
