@@ -1,4 +1,43 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  MdEmail, 
+  MdLocationOn, 
+  MdPerson, 
+  MdComputer, 
+  MdBuild,
+  MdSchool,
+  MdWork,
+  MdStar,
+  MdDownload,
+  MdMenu,
+  MdLightMode,
+  MdDarkMode
+} from "react-icons/md";
+import { 
+  FaLinkedin, 
+  FaReact, 
+  FaHtml5, 
+  FaCss3Alt, 
+  FaJs, 
+  FaJava, 
+  FaGitAlt, 
+  FaFigma,
+  FaGithub,
+  FaCode,
+  FaDatabase,
+  FaMobile
+} from "react-icons/fa";
+import { 
+  SiCplusplus, 
+  SiTailwindcss, 
+  SiVite, 
+  SiNodedotjs, 
+  SiMongodb,
+  SiExpress,
+  SiPython,
+  SiTypescript
+} from "react-icons/si";
 import './App.css';
 
 function App() {
@@ -8,160 +47,330 @@ function App() {
     setDarkMode(!darkMode);
   };
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const scaleIn = {
+    initial: { opacity: 0, scale: 0.8 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.5 }
+  };
+
   return (
     <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+      <motion.nav 
+        className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
+            <motion.div 
+              className="flex items-center"
+              whileHover={{ scale: 1.05 }}
+            >
               <span className="text-xl font-bold text-primary">VM</span>
-            </div>
+            </motion.div>
             <div className="flex items-center space-x-4">
-              <button
+              <motion.button
                 onClick={toggleDarkMode}
                 className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                {darkMode ? '☀️' : '🌙'}
-              </button>
-              <button className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                ☰
-              </button>
+                {darkMode ? <MdLightMode size={20} /> : <MdDarkMode size={20} />}
+              </motion.button>
+              <motion.button 
+                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <MdMenu size={20} />
+              </motion.button>
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="mb-8">
-            <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl font-bold">
+          <motion.div 
+            className="mb-8"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.div 
+              className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl font-bold"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              animate={{ 
+                boxShadow: [
+                  "0 0 0 0 rgba(59, 130, 246, 0.4)",
+                  "0 0 0 20px rgba(59, 130, 246, 0)",
+                  "0 0 0 0 rgba(59, 130, 246, 0)"
+                ]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 1
+              }}
+            >
               VM
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             Vaibhav Mehta
-          </h1>
+          </motion.h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+          <motion.p 
+            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             B.Tech CSE Student | Aspiring Full-Stack Developer
-          </p>
+          </motion.p>
           
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            📍 Khatauli, Muzaffarnagar, India
-          </p>
+          <motion.p 
+            className="text-lg text-gray-600 dark:text-gray-300 mb-8 flex items-center justify-center gap-2"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <MdLocationOn className="text-red-500" />
+            Khatauli, Muzaffarnagar, India
+          </motion.p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            <motion.a
               href="mailto:vaibhavmehtajp098@gmail.com"
               className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
-              📧 Email
-            </a>
-            <a
+              <MdEmail size={20} />
+              Email
+            </motion.a>
+            <motion.a
               href="https://www.linkedin.com/in/vaibhav-mehta-8a8363283"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
-              🔗 LinkedIn
-            </a>
-          </div>
+              <FaLinkedin size={20} />
+              LinkedIn
+            </motion.a>
+          </motion.div>
         </div>
       </section>
 
       {/* About Section */}
       <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">About Me</h2>
-          <div className="bg-white dark:bg-gray-700 rounded-lg p-8 shadow-lg">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            About Me
+          </motion.h2>
+          <motion.div 
+            className="bg-white dark:bg-gray-700 rounded-lg p-8 shadow-lg"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            whileHover={{ y: -5 }}
+          >
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               A punctual and highly organized undergraduate with a strong commitment to completing tasks ahead of schedule. Known for maintaining a well-structured workflow and thriving in team environments. Possesses excellent communication and leadership skills, with a passion for exploring innovative avenues in Computer Science Engineering and delivering high-quality projects efficiently.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Skills Section */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Technical Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg">
-              <h3 className="text-xl font-semibold mb-4">Languages</h3>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-primary rounded-full"></div>
-                  <span>C</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-primary rounded-full"></div>
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Technical Skills
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ y: -10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <FaCode className="text-primary text-2xl" />
+                <h3 className="text-xl font-semibold">Languages</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <SiCplusplus className="text-blue-600 text-xl" />
                   <span>C++</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-primary rounded-full"></div>
+                <div className="flex items-center gap-3">
+                  <SiCplusplus className="text-blue-600 text-xl" />
+                  <span>C</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaJava className="text-orange-500 text-xl" />
                   <span>Java</span>
                 </div>
-              </div>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg">
-              <h3 className="text-xl font-semibold mb-4">Web Development</h3>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-secondary rounded-full"></div>
-                  <span>HTML/CSS</span>
+                <div className="flex items-center gap-3">
+                  <SiPython className="text-yellow-500 text-xl" />
+                  <span>Python</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-secondary rounded-full"></div>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ y: -10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <FaReact className="text-blue-500 text-2xl" />
+                <h3 className="text-xl font-semibold">Web Development</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <FaHtml5 className="text-orange-500 text-xl" />
+                  <span>HTML5</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaCss3Alt className="text-blue-500 text-xl" />
+                  <span>CSS3</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaJs className="text-yellow-400 text-xl" />
                   <span>JavaScript</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-secondary rounded-full"></div>
+                <div className="flex items-center gap-3">
+                  <FaReact className="text-blue-500 text-xl" />
                   <span>React</span>
                 </div>
+                <div className="flex items-center gap-3">
+                  <SiTailwindcss className="text-cyan-500 text-xl" />
+                  <span>Tailwind CSS</span>
+                </div>
               </div>
-            </div>
+            </motion.div>
             
-            <div className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg">
-              <h3 className="text-xl font-semibold mb-4">Tools</h3>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-accent rounded-full"></div>
+            <motion.div 
+              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg"
+              variants={scaleIn}
+              whileHover={{ y: -10, scale: 1.02 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <MdBuild className="text-green-500 text-2xl" />
+                <h3 className="text-xl font-semibold">Tools & Others</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <FaGitAlt className="text-orange-600 text-xl" />
                   <span>Git</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-accent rounded-full"></div>
-                  <span>VS Code</span>
+                <div className="flex items-center gap-3">
+                  <FaGithub className="text-gray-800 dark:text-white text-xl" />
+                  <span>GitHub</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-accent rounded-full"></div>
+                <div className="flex items-center gap-3">
+                  <SiVite className="text-purple-500 text-xl" />
+                  <span>Vite</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaFigma className="text-purple-600 text-xl" />
                   <span>Figma</span>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
       <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Let's Connect</h2>
-          <p className="text-center text-gray-600 dark:text-gray-300 mb-12">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Let's Connect
+          </motion.h2>
+          <motion.p 
+            className="text-center text-gray-600 dark:text-gray-300 mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             I'd love to hear from you! Let's discuss opportunities and collaborations.
-          </p>
+          </motion.p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {/* Contact Info */}
-            <div>
+            <motion.div variants={fadeInUp}>
               <h3 className="text-xl font-semibold mb-6">Get In Touch</h3>
               <div className="space-y-4">
-                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg">
+                <motion.div 
+                  className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg"
+                  whileHover={{ x: 10, scale: 1.02 }}
+                >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">📧</span>
+                    <MdEmail className="text-primary text-2xl" />
                     <div>
                       <p className="font-semibold">Email</p>
                       <a href="mailto:vaibhavmehtajp098@gmail.com" className="text-primary hover:underline">
@@ -169,21 +378,27 @@ function App() {
                       </a>
                     </div>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg">
+                <motion.div 
+                  className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg"
+                  whileHover={{ x: 10, scale: 1.02 }}
+                >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">📍</span>
+                    <MdLocationOn className="text-red-500 text-2xl" />
                     <div>
                       <p className="font-semibold">Location</p>
                       <p>Khatauli, Muzaffarnagar, India</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg">
+                <motion.div 
+                  className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg"
+                  whileHover={{ x: 10, scale: 1.02 }}
+                >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">🔗</span>
+                    <FaLinkedin className="text-blue-600 text-2xl" />
                     <div>
                       <p className="font-semibold">LinkedIn</p>
                       <a href="https://www.linkedin.com/in/vaibhav-mehta-8a8363283" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
@@ -191,61 +406,84 @@ function App() {
                       </a>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
             
             {/* Contact Form */}
-            <div>
+            <motion.div variants={fadeInUp}>
               <h3 className="text-xl font-semibold mb-6">Send Message</h3>
               <form className="space-y-4">
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
                   <label className="block text-sm font-medium mb-2">Name</label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                     placeholder="Your name"
                   />
-                </div>
+                </motion.div>
                 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
                   <label className="block text-sm font-medium mb-2">Email</label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                     placeholder="your.email@example.com"
                   />
-                </div>
+                </motion.div>
                 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   <label className="block text-sm font-medium mb-2">Message</label>
                   <textarea
                     rows="4"
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent resize-none transition-all"
                     placeholder="Your message..."
                   ></textarea>
-                </div>
+                </motion.div>
                 
-                <button
+                <motion.button
                   type="submit"
                   className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   Send Message
-                </button>
+                </motion.button>
               </form>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+      <motion.footer 
+        className="py-8 px-4 bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-600 dark:text-gray-400">
             © 2025 Vaibhav Mehta. All rights reserved.
           </p>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
