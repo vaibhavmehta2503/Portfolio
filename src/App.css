@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+/* Premium Portfolio Styles */
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #059669;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #047857;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #10b981;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Premium animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(5, 150, 105, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(5, 150, 105, 0.4); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Neumorphism effects */
+.neumorphism {
+  background: #ffffff;
+  box-shadow: 
+    8px 8px 16px #e5e7eb,
+    -8px -8px 16px #ffffff;
+  border-radius: 16px;
+}
+
+.dark .neumorphism {
+  background: #1f2937;
+  box-shadow: 
+    8px 8px 16px #111827,
+    -8px -8px 16px #374151;
+}
+
+/* Premium button styles */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-premium:hover::before {
+  left: 100%;
+}
+
+/* Skill card hover effects */
+.skill-card {
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Project card effects */
+.project-card {
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.9), rgba(13, 148, 136, 0.9));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+/* Timeline styles */
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #059669, #0d9488);
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #059669;
+  border: 3px solid #ffffff;
+}
+
+.dark .timeline-item::after {
+  border-color: #1e293b;
+}
+
+/* Achievement badge styles */
+.achievement-badge {
+  transition: all 0.3s ease;
+}
+
+.achievement-badge:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+/* Form input focus effects */
+.form-input {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.form-input:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+/* Particle background */
+.particle {
+  position: absolute;
+  background: rgba(5, 150, 105, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  .text-hero {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .text-hero {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-hero {
+    font-size: 5rem;
+  }
+}
+
+/* Loading states */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
