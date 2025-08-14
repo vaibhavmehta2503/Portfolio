@@ -648,45 +648,28 @@ function App() {
               </div>
             </div>
             
-            <motion.button
-              onClick={() => {
-                // Method 1: Try direct download
-                try {
-                  fetch('/Portfolio/Resume.pdf')
-                    .then(response => {
-                      if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                      }
-                      return response.blob();
-                    })
-                    .then(blob => {
-                      const url = window.URL.createObjectURL(blob);
-                      const link = document.createElement('a');
-                      link.href = url;
-                      link.download = 'Vaibhav_Mehta_Resume.pdf';
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                      window.URL.revokeObjectURL(url);
-                    })
-                    .catch(error => {
-                      console.error('Download failed:', error);
-                      // Method 2: Fallback to opening in new tab
-                      window.open('/Portfolio/Resume.pdf', '_blank');
-                    });
-                } catch (error) {
-                  console.error('Download failed:', error);
-                  // Method 3: Final fallback
-                  window.open('/Portfolio/Resume.pdf', '_blank');
-                }
-              }}
-              className="bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-8 rounded-lg text-lg flex items-center gap-3 mx-auto"
+            <motion.a
+              href="/Portfolio/Resume.pdf"
+              download="Vaibhav_Mehta_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-8 rounded-lg text-lg flex items-center gap-3 mx-auto cursor-pointer"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                // Try to force download, but allow fallback to new tab
+                try {
+                  // Let the browser handle it naturally
+                  // If download doesn't work, it will open in new tab
+                } catch (error) {
+                  console.error('Download failed:', error);
+                  // Fallback is handled by the href and target="_blank"
+                }
+              }}
             >
               <MdDownload size={24} />
               Download Resume
-            </motion.button>
+            </motion.a>
             
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
               Last updated: {new Date().toLocaleDateString()}
