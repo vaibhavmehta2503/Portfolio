@@ -652,8 +652,13 @@ function App() {
               onClick={() => {
                 // Method 1: Try direct download
                 try {
-                  fetch('/Resume.pdf')
-                    .then(response => response.blob())
+                  fetch('/Portfolio/Resume.pdf')
+                    .then(response => {
+                      if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                      }
+                      return response.blob();
+                    })
                     .then(blob => {
                       const url = window.URL.createObjectURL(blob);
                       const link = document.createElement('a');
@@ -667,12 +672,12 @@ function App() {
                     .catch(error => {
                       console.error('Download failed:', error);
                       // Method 2: Fallback to opening in new tab
-                      window.open('/Resume.pdf', '_blank');
+                      window.open('/Portfolio/Resume.pdf', '_blank');
                     });
                 } catch (error) {
                   console.error('Download failed:', error);
                   // Method 3: Final fallback
-                  window.open('/Resume.pdf', '_blank');
+                  window.open('/Portfolio/Resume.pdf', '_blank');
                 }
               }}
               className="bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-8 rounded-lg text-lg flex items-center gap-3 mx-auto"
