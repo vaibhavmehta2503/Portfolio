@@ -650,12 +650,30 @@ function App() {
             
             <motion.button
               onClick={() => {
-                const link = document.createElement('a');
-                link.href = '/Resume.pdf';
-                link.download = 'Resume.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                // Method 1: Try direct download
+                try {
+                  fetch('/Resume.pdf')
+                    .then(response => response.blob())
+                    .then(blob => {
+                      const url = window.URL.createObjectURL(blob);
+                      const link = document.createElement('a');
+                      link.href = url;
+                      link.download = 'Vaibhav_Mehta_Resume.pdf';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                      window.URL.revokeObjectURL(url);
+                    })
+                    .catch(error => {
+                      console.error('Download failed:', error);
+                      // Method 2: Fallback to opening in new tab
+                      window.open('/Resume.pdf', '_blank');
+                    });
+                } catch (error) {
+                  console.error('Download failed:', error);
+                  // Method 3: Final fallback
+                  window.open('/Resume.pdf', '_blank');
+                }
               }}
               className="bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-8 rounded-lg text-lg flex items-center gap-3 mx-auto"
               whileHover={{ scale: 1.05, y: -2 }}
