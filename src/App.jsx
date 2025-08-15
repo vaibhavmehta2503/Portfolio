@@ -15,6 +15,8 @@ import {
   MdDarkMode,
   MdDescription
 } from "react-icons/md";
+import { RiAiGenerate2 } from "react-icons/ri";
+
 import { 
   FaLinkedin, 
   FaReact, 
@@ -617,7 +619,7 @@ function App() {
               whileHover={{ x: 10, scale: 1.02 }}
             >
               <div className="flex items-center gap-4">
-                <FaCertificate className="text-purple-500 text-3xl" />
+                <RiAiGenerate2  className="text-purple-500 text-3xl" />
                 <div className="flex-1">
                   <h3 className="font-classy text-xl font-semibold">Career Essentials in Generative AI</h3>
                   <p className="font-modern text-gray-600 dark:text-gray-300">Microsoft & LinkedIn</p>
