@@ -194,7 +194,7 @@ function App() {
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8"
+            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 font-modern"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
