@@ -185,7 +185,7 @@ function App() {
           </motion.div>
           
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+            className="font-classy text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -194,7 +194,7 @@ function App() {
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 font-modern"
+            className="font-modern text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -203,7 +203,7 @@ function App() {
           </motion.p>
           
           <motion.p 
-            className="text-lg text-gray-600 dark:text-gray-300 mb-8 flex items-center justify-center gap-2"
+            className="font-modern text-lg text-gray-600 dark:text-gray-300 mb-8 flex items-center justify-center gap-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -246,7 +246,7 @@ function App() {
       <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="font-classy text-3xl font-bold text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -262,7 +262,7 @@ function App() {
             transition={{ duration: 0.8, delay: 0.2 }}
             whileHover={{ y: -5 }}
           >
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p className="font-modern text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               A punctual and highly organized undergraduate with a strong commitment to completing tasks ahead of schedule. Known for maintaining a well-structured workflow and thriving in team environments. Possesses excellent communication and leadership skills, with a passion for exploring innovative avenues in Computer Science Engineering and delivering high-quality projects efficiently.
             </p>
           </motion.div>
@@ -273,7 +273,7 @@ function App() {
       <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="font-classy text-3xl font-bold text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -295,22 +295,22 @@ function App() {
             >
               <div className="flex items-center gap-3 mb-4">
                 <FaCode className="text-primary text-2xl" />
-                <h3 className="text-xl font-semibold">Languages</h3>
+                <h3 className="font-classy text-xl font-semibold">Languages</h3>
               </div>
               <div className="space-y-3">
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <SiCplusplus className="text-blue-600 text-xl" />
                   <span>C++</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <SiCplusplus className="text-blue-600 text-xl" />
                   <span>C</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <FaJava className="text-orange-500 text-xl" />
                   <span>Java</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <SiPython className="text-yellow-500 text-xl" />
                   <span>Python</span>
                 </div>
@@ -322,28 +322,28 @@ function App() {
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="font-modern flex items-center gap-3 mb-4">
                 <FaReact className="text-blue-500 text-2xl" />
-                <h3 className="text-xl font-semibold">Web Development</h3>
+                <h3 className="font-classy text-xl font-semibold">Web Development</h3>
               </div>
               <div className="space-y-3">
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <FaHtml5 className="text-orange-500 text-xl" />
                   <span>HTML5</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <FaCss3Alt className="text-blue-500 text-xl" />
                   <span>CSS3</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <FaJs className="text-yellow-400 text-xl" />
                   <span>JavaScript</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <FaReact className="text-blue-500 text-xl" />
                   <span>React</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <SiTailwindcss className="text-cyan-500 text-xl" />
                   <span>Tailwind CSS</span>
                 </div>
@@ -355,26 +355,22 @@ function App() {
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="font-modern flex items-center gap-3 mb-4">
                 <MdBuild className="text-green-500 text-2xl" />
-                <h3 className="text-xl font-semibold">Tools & Others</h3>
+                <h3 className="font-classy text-xl font-semibold">Tools & Others</h3>
               </div>
               <div className="space-y-3">
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <FaGitAlt className="text-orange-600 text-xl" />
                   <span>Git</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <FaGithub className="text-gray-800 dark:text-white text-xl" />
                   <span>GitHub</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="font-modern flex items-center gap-3">
                   <SiVite className="text-purple-500 text-xl" />
                   <span>Vite</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <FaFigma className="text-purple-600 text-xl" />
-                  <span>Figma</span>
                 </div>
               </div>
             </motion.div>
@@ -386,7 +382,7 @@ function App() {
       <section className="py-16 px-4 bg-blue-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="font-classy text-3xl font-bold text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -406,11 +402,11 @@ function App() {
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="font-modern flex items-center gap-3 mb-4">
                 <FaProjectDiagram className="text-blue-500 text-2xl" />
-                <h3 className="text-xl font-semibold">DineQR – Digital Restaurant Management System</h3>
+                <h3 className="font-classy text-xl font-semibold">DineQR – Digital Restaurant Management System</h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="font-modern text-gray-600 dark:text-gray-300 mb-4">
                 A comprehensive digital restaurant management system that streamlines operations through QR-based menus and real-time order tracking.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -426,11 +422,11 @@ function App() {
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="font-modern flex items-center gap-3 mb-4">
                 <FaProjectDiagram className="text-green-500 text-2xl" />
-                <h3 className="text-xl font-semibold">MICO Hospital Website</h3>
+                <h3 className="font-classy text-xl font-semibold">MICO Hospital Website</h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="font-modern text-gray-600 dark:text-gray-300 mb-4">
                 A modern hospital website with integrated appointment booking system and AI-powered chatbot for patient assistance.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -448,7 +444,7 @@ function App() {
       <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="font-classy text-3xl font-bold text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -468,12 +464,12 @@ function App() {
               variants={scaleIn}
               whileHover={{ x: 10, scale: 1.02 }}
             >
-              <div className="flex items-center gap-4">
+              <div className="font-modern flex items-center gap-4">
                 <FaGraduationCap className="text-primary text-3xl" />
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold">B.Tech CSE</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Chandigarh Group of Colleges, Landran</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">2023–2027</p>
+                  <h3 className="font-classy text-xl font-semibold">B.Tech CSE</h3>
+                  <p className="font-modern text-gray-600 dark:text-gray-300">Chandigarh Group of Colleges, Landran</p>
+                  <p className="font-modern text-sm text-gray-500 dark:text-gray-400">2023–2027</p>
                 </div>
                 <span className="bg-primary text-white px-4 py-2 rounded-full font-semibold">8.53 CGPA</span>
               </div>
@@ -484,12 +480,12 @@ function App() {
               variants={scaleIn}
               whileHover={{ x: 10, scale: 1.02 }}
             >
-              <div className="flex items-center gap-4">
+              <div className="font-modern flex items-center gap-4">
                 <MdSchool className="text-secondary text-3xl" />
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold">Intermediate</h3>
-                  <p className="text-gray-600 dark:text-gray-300">KK Public School</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">2021-2023</p>
+                  <h3 className="font-classy text-xl font-semibold">Intermediate</h3>
+                  <p className="font-modern text-gray-600 dark:text-gray-300">KK Public School</p>
+                  <p className="font-modern text-sm text-gray-500 dark:text-gray-400">2021-2023</p>
                 </div>
                 <span className="bg-secondary text-white px-4 py-2 rounded-full font-semibold">82.75%</span>
               </div>
@@ -503,9 +499,9 @@ function App() {
               <div className="flex items-center gap-4">
                 <MdSchool className="text-accent text-3xl" />
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold">Matriculation</h3>
-                  <p className="text-gray-600 dark:text-gray-300">S.T. Thomas School</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">2020-2021</p>
+                  <h3 className="font-classy text-xl font-semibold">Matriculation</h3>
+                  <p className="font-modern text-gray-600 dark:text-gray-300">S.T. Thomas School</p>
+                  <p className="font-modern text-sm text-gray-500 dark:text-gray-400">2020-2021</p>
                 </div>
                 <span className="bg-accent text-white px-4 py-2 rounded-full font-semibold">87%</span>
               </div>
@@ -518,7 +514,7 @@ function App() {
       <section className="py-16 px-4 bg-green-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="font-classy text-3xl font-bold text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -539,7 +535,7 @@ function App() {
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
               <FaTrophy className="text-yellow-500 text-3xl" />
-              <p className="text-gray-700 dark:text-gray-300 font-medium">3-Star Badge in C++ & Problem Solving on HackerRank</p>
+              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">3-Star Badge in C++ & Problem Solving on HackerRank</p>
             </motion.div>
 
             <motion.div 
@@ -548,7 +544,7 @@ function App() {
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
               <FaTrophy className="text-yellow-500 text-3xl" />
-              <p className="text-gray-700 dark:text-gray-300 font-medium">17 Specialist Badges on Coding Ninjas</p>
+              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">17 Specialist Badges on Coding Ninjas</p>
             </motion.div>
 
             <motion.div 
@@ -557,7 +553,7 @@ function App() {
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
               <FaCertificate className="text-green-500 text-3xl" />
-              <p className="text-gray-700 dark:text-gray-300 font-medium">NPTEL Certification in Data Structures using C</p>
+              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">NPTEL Certification in Data Structures using C</p>
             </motion.div>
 
             <motion.div 
@@ -566,7 +562,7 @@ function App() {
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
               <FaAward className="text-blue-500 text-3xl" />
-              <p className="text-gray-700 dark:text-gray-300 font-medium">Selected for Semifinal Round of SIH 2024</p>
+              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">Selected for Semifinal Round of SIH 2024</p>
             </motion.div>
 
             <motion.div 
@@ -575,7 +571,7 @@ function App() {
               whileHover={{ scale: 1.05, rotate: 2 }}
             >
               <MdStar className="text-yellow-500 text-3xl" />
-              <p className="text-gray-700 dark:text-gray-300 font-medium">3× College Topper on Naukri 360 Leaderboard</p>
+              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">3× College Topper on Naukri 360 Leaderboard</p>
             </motion.div>
           </motion.div>
         </div>
@@ -585,7 +581,7 @@ function App() {
       <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="font-classy text-3xl font-bold text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -608,8 +604,8 @@ function App() {
               <div className="flex items-center gap-4">
                 <FaCertificate className="text-blue-500 text-3xl" />
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold">Introduction to Data Science</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Simplilearn</p>
+                  <h3 className="font-classy text-xl font-semibold">Introduction to Data Science</h3>
+                  <p className="font-modern text-gray-600 dark:text-gray-300">Simplilearn</p>
                 </div>
                 <div className="text-green-500 text-2xl">✓</div>
               </div>
@@ -623,8 +619,8 @@ function App() {
               <div className="flex items-center gap-4">
                 <FaCertificate className="text-purple-500 text-3xl" />
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold">Career Essentials in Generative AI</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Microsoft & LinkedIn</p>
+                  <h3 className="font-classy text-xl font-semibold">Career Essentials in Generative AI</h3>
+                  <p className="font-modern text-gray-600 dark:text-gray-300">Microsoft & LinkedIn</p>
                 </div>
                 <div className="text-green-500 text-2xl">✓</div>
               </div>
@@ -638,8 +634,8 @@ function App() {
               <div className="flex items-center gap-4">
                 <FaCertificate className="text-green-500 text-3xl" />
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold">Introduction to Artificial Intelligence</h3>
-                  <p className="text-gray-600 dark:text-gray-300">LinkedIn Learning</p>
+                  <h3 className="font-classy text-xl font-semibold">Introduction to Artificial Intelligence</h3>
+                  <p className="font-modern text-gray-600 dark:text-gray-300">LinkedIn Learning</p>
                 </div>
                 <div className="text-green-500 text-2xl">✓</div>
               </div>
@@ -652,7 +648,7 @@ function App() {
       <section className="py-16 px-4 bg-blue-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="font-classy text-3xl font-bold text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -669,26 +665,26 @@ function App() {
             whileHover={{ y: -5 }}
           >
             <MdDescription className="text-6xl text-primary mx-auto mb-6" />
-            <h3 className="text-3xl font-bold mb-4">Vaibhav Mehta - Resume</h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            <h3 className="font-classy text-3xl font-bold mb-4">Vaibhav Mehta - Resume</h3>
+            <p className="font-modern text-lg text-gray-600 dark:text-gray-300 mb-8">
               A comprehensive overview of my education, skills, projects, and achievements in a professional format.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
                 <FaGraduationCap className="text-2xl text-primary mx-auto mb-2" />
-                <div className="font-semibold">Education</div>
-                <div className="text-sm text-gray-600 dark:text-gray-300">B.Tech CSE</div>
+                <div className="font-classy font-semibold">Education</div>
+                <div className="font-modern text-sm text-gray-600 dark:text-gray-300">B.Tech CSE</div>
               </div>
               <div className="text-center">
                 <FaCode className="text-2xl text-secondary mx-auto mb-2" />
-                <div className="font-semibold">Skills</div>
-                <div className="text-sm text-gray-600 dark:text-gray-300">Full-Stack Development</div>
+                <div className="font-classy font-semibold">Skills</div>
+                <div className="font-modern text-sm text-gray-600 dark:text-gray-300">Full-Stack Development</div>
               </div>
               <div className="text-center">
                 <FaTrophy className="text-2xl text-accent mx-auto mb-2" />
-                <div className="font-semibold">Achievements</div>
-                <div className="text-sm text-gray-600 dark:text-gray-300">Multiple Certifications</div>
+                <div className="font-classy font-semibold">Achievements</div>
+                <div className="font-modern text-sm text-gray-600 dark:text-gray-300">Multiple Certifications</div>
               </div>
             </div>
             
@@ -726,7 +722,7 @@ function App() {
       <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="font-classy text-3xl font-bold text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -735,7 +731,7 @@ function App() {
             Let's Connect
           </motion.h2>
           <motion.p 
-            className="text-center text-gray-600 dark:text-gray-300 mb-12"
+            className="font-modern text-center text-gray-600 dark:text-gray-300 mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -753,7 +749,7 @@ function App() {
           >
             {/* Contact Info */}
             <motion.div variants={fadeInUp}>
-              <h3 className="text-xl font-semibold mb-6">Get In Touch</h3>
+              <h3 className="font-classy text-xl font-semibold mb-6">Get In Touch</h3>
               <div className="space-y-4">
                 <motion.div 
                   className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-lg border border-gray-200 dark:border-gray-600"
@@ -762,7 +758,7 @@ function App() {
                   <div className="flex items-center gap-3">
                     <MdEmail className="text-primary text-2xl" />
                     <div>
-                      <p className="font-semibold">Email</p>
+                      <p className="font-classy font-semibold">Email</p>
                       <a href="mailto:vaibhavmehtajp098@gmail.com" className="text-primary hover:underline">
                         vaibhavmehtajp098@gmail.com
                       </a>
@@ -777,7 +773,7 @@ function App() {
                   <div className="flex items-center gap-3">
                     <MdLocationOn className="text-red-500 text-2xl" />
                     <div>
-                      <p className="font-semibold">Location</p>
+                      <p className="font-classy font-semibold">Location</p>
                       <p>Khatauli, Muzaffarnagar, India</p>
                     </div>
                   </div>
@@ -790,7 +786,7 @@ function App() {
                   <div className="flex items-center gap-3">
                     <FaLinkedin className="text-blue-600 text-2xl" />
                     <div>
-                      <p className="font-semibold">LinkedIn</p>
+                      <p className="font-classy font-semibold">LinkedIn</p>
                       <a href="https://www.linkedin.com/in/vaibhav-mehta-8a8363283" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                         Connect on LinkedIn
                       </a>
@@ -802,7 +798,7 @@ function App() {
             
             {/* Contact Form */}
             <motion.div variants={fadeInUp}>
-              <h3 className="text-xl font-semibold mb-6">Send Message</h3>
+              <h3 className="font-classy text-xl font-semibold mb-6">Send Message</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Status Message */}
                 {submitStatus && (
@@ -825,7 +821,7 @@ function App() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
                 >
-                  <label className="block text-sm font-medium mb-2">Name</label>
+                  <label className="block font-modern       text-sm font-medium mb-2">Name</label>
                   <input
                     type="text"
                     name="name"
@@ -843,7 +839,7 @@ function App() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  <label className="block text-sm font-medium mb-2">Email</label>
+                  <label className="block font-modern text-sm font-medium mb-2">Email</label>
                   <input
                     type="email"
                     name="email"
@@ -861,7 +857,7 @@ function App() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  <label className="block text-sm font-medium mb-2">Message</label>
+                  <label className="block font-modern           text-sm font-medium mb-2">Message</label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -876,7 +872,7 @@ function App() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full font-semibold py-3 px-6 rounded-lg transition-colors ${
+                  className={`w-full font-classy font-semibold py-3 px-6 rounded-lg transition-colors ${
                     isSubmitting 
                       ? 'bg-gray-400 cursor-not-allowed' 
                       : 'bg-primary hover:bg-primary/90 text-white'
@@ -901,7 +897,7 @@ function App() {
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="font-modern  text-gray-600 dark:text-gray-400">
             © 2025 Vaibhav Mehta. All rights reserved.
           </p>
         </div>
