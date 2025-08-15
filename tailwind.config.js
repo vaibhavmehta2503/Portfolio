@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        classy: ["'Playfair Display'", "serif"],
+        modern: ["Inter", "sans-serif"],
+      },
       colors: {
         primary: "#3b82f6",
         secondary: "#8b5cf6",
