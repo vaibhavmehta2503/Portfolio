@@ -1,209 +1,189 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const allowedOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
+const emailUser = process.env.EMAIL_USER;
+const emailPass = process.env.EMAIL_PASS;
+const emailTo = process.env.EMAIL_TO || emailUser;
 
-// Middleware
-app.use(cors({
-  origin: 'http://localhost:5173', // Vite dev server
-  credentials: true
-}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const messages = [];
 
-// In-memory storage for messages (in production, use a database)
-let messages = [];
+const escapeHtml = (value = '') =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 
-// Email transporter configuration
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER || 'your-email@gmail.com',
-    pass: process.env.EMAIL_PASS || 'your-app-password'
-  }
-});
+app.use(
+  cors({
+    origin: allowedOrigin,
+    credentials: true,
+  })
+);
+app.use(express.json({ limit: '24kb' }));
+app.use(express.urlencoded({ extended: true, limit: '24kb' }));
 
-// Routes
+const transporter =
+  emailUser && emailPass
+    ? nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: emailUser,
+          pass: emailPass,
+        },
+      })
+    : null;
 
-// Get all messages (for admin purposes)
-app.get('/api/messages', (req, res) => {
-  try {
-    res.json({
-      success: true,
-      messages: messages,
-      count: messages.length
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: 'Failed to fetch messages'
-    });
-  }
-});
-
-// Send a new message
-app.post('/api/send-message', async (req, res) => {
-  try {
-    const { name, email, message } = req.body;
-
-    // Validation
-    if (!name || !email || !message) {
-      return res.status(400).json({
-        success: false,
-        error: 'All fields are required'
-      });
-    }
-
-    if (!email.includes('@')) {
-      return res.status(400).json({
-        success: false,
-        error: 'Please provide a valid email address'
-      });
-    }
-
-    // Create message object
-    const newMessage = {
-      id: Date.now().toString(),
-      name: name.trim(),
-      email: email.trim(),
-      message: message.trim(),
-      timestamp: new Date().toISOString(),
-      status: 'unread'
-    };
-
-    // Store message
-    messages.push(newMessage);
-
-    // Send email notification
-    try {
-      const mailOptions = {
-        from: process.env.EMAIL_USER || 'your-email@gmail.com',
-        to: process.env.EMAIL_USER || 'your-email@gmail.com', // You'll receive the messages
-        subject: `New Portfolio Message from ${name}`,
-        html: `
-          <h2>New Message from Portfolio Contact Form</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
-          <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
-        `
-      };
-
-      await transporter.sendMail(mailOptions);
-      console.log('Email notification sent successfully');
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      // Don't fail the request if email fails
-    }
-
-    // Send auto-reply to sender
-    try {
-      const autoReplyOptions = {
-        from: process.env.EMAIL_USER || 'your-email@gmail.com',
-        to: email,
-        subject: 'Thank you for your message - Vaibhav Mehta',
-        html: `
-          <h2>Thank you for reaching out!</h2>
-          <p>Dear ${name},</p>
-          <p>Thank you for your message. I have received it and will get back to you as soon as possible.</p>
-          <p>Best regards,<br>Vaibhav Mehta</p>
-        `
-      };
-
-      await transporter.sendMail(autoReplyOptions);
-      console.log('Auto-reply sent successfully');
-    } catch (autoReplyError) {
-      console.error('Auto-reply sending failed:', autoReplyError);
-    }
-
-    res.json({
-      success: true,
-      message: 'Message sent successfully!',
-      data: newMessage
-    });
-
-  } catch (error) {
-    console.error('Error sending message:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to send message. Please try again.'
-    });
-  }
-});
-
-// Mark message as read
-app.put('/api/messages/:id/read', (req, res) => {
-  try {
-    const { id } = req.params;
-    const messageIndex = messages.findIndex(msg => msg.id === id);
-    
-    if (messageIndex === -1) {
-      return res.status(404).json({
-        success: false,
-        error: 'Message not found'
-      });
-    }
-
-    messages[messageIndex].status = 'read';
-    
-    res.json({
-      success: true,
-      message: 'Message marked as read',
-      data: messages[messageIndex]
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: 'Failed to update message status'
-    });
-  }
-});
-
-// Delete a message
-app.delete('/api/messages/:id', (req, res) => {
-  try {
-    const { id } = req.params;
-    const messageIndex = messages.findIndex(msg => msg.id === id);
-    
-    if (messageIndex === -1) {
-      return res.status(404).json({
-        success: false,
-        error: 'Message not found'
-      });
-    }
-
-    const deletedMessage = messages.splice(messageIndex, 1)[0];
-    
-    res.json({
-      success: true,
-      message: 'Message deleted successfully',
-      data: deletedMessage
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: 'Failed to delete message'
-    });
-  }
-});
-
-// Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
     success: true,
     message: 'Backend server is running',
-    timestamp: new Date().toISOString()
+    emailConfigured: Boolean(transporter && emailTo),
+    timestamp: new Date().toISOString(),
   });
 });
 
-// Start server
+app.get('/api/messages', (req, res) => {
+  res.json({
+    success: true,
+    messages,
+    count: messages.length,
+  });
+});
+
+app.post('/api/send-message', async (req, res) => {
+  try {
+    const { name = '', email = '', message = '' } = req.body;
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      return res.status(400).json({
+        success: false,
+        error: 'All fields are required.',
+      });
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please provide a valid email address.',
+      });
+    }
+
+    if (!transporter || !emailTo) {
+      return res.status(500).json({
+        success: false,
+        error: 'Email service is not configured. Set EMAIL_USER, EMAIL_PASS, and EMAIL_TO.',
+      });
+    }
+
+    const newMessage = {
+      id: Date.now().toString(),
+      name: trimmedName,
+      email: trimmedEmail,
+      message: trimmedMessage,
+      timestamp: new Date().toISOString(),
+      status: 'unread',
+    };
+
+    messages.push(newMessage);
+
+    const safeName = escapeHtml(trimmedName);
+    const safeEmail = escapeHtml(trimmedEmail);
+    const safeMessage = escapeHtml(trimmedMessage).replace(/\n/g, '<br>');
+
+    await transporter.sendMail({
+      from: `"Portfolio Contact" <${emailUser}>`,
+      replyTo: trimmedEmail,
+      to: emailTo,
+      subject: `New Portfolio Message from ${trimmedName}`,
+      html: `
+        <h2>New Message from Portfolio Contact Form</h2>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Message:</strong></p>
+        <p>${safeMessage}</p>
+        <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
+      `,
+    });
+
+    try {
+      await transporter.sendMail({
+        from: `"Vaibhav Mehta" <${emailUser}>`,
+        to: trimmedEmail,
+        subject: 'Thank you for your message - Vaibhav Mehta',
+        html: `
+          <h2>Thank you for reaching out!</h2>
+          <p>Dear ${safeName},</p>
+          <p>Thank you for your message. I have received it and will get back to you as soon as possible.</p>
+          <p>Best regards,<br>Vaibhav Mehta</p>
+        `,
+      });
+    } catch (autoReplyError) {
+      console.error('Auto-reply failed:', autoReplyError.message);
+    }
+
+    res.json({
+      success: true,
+      message: 'Message sent successfully.',
+      data: newMessage,
+    });
+  } catch (error) {
+    console.error('Error sending message:', error.message);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to send message. Please try again or email directly.',
+    });
+  }
+});
+
+app.put('/api/messages/:id/read', (req, res) => {
+  const message = messages.find((item) => item.id === req.params.id);
+
+  if (!message) {
+    return res.status(404).json({
+      success: false,
+      error: 'Message not found.',
+    });
+  }
+
+  message.status = 'read';
+  res.json({
+    success: true,
+    message: 'Message marked as read.',
+    data: message,
+  });
+});
+
+app.delete('/api/messages/:id', (req, res) => {
+  const messageIndex = messages.findIndex((item) => item.id === req.params.id);
+
+  if (messageIndex === -1) {
+    return res.status(404).json({
+      success: false,
+      error: 'Message not found.',
+    });
+  }
+
+  const [deletedMessage] = messages.splice(messageIndex, 1);
+  res.json({
+    success: true,
+    message: 'Message deleted successfully.',
+    data: deletedMessage,
+  });
+});
+
 app.listen(PORT, () => {
-  console.log(`🚀 Backend server running on port ${PORT}`);
-  console.log(`📧 Email notifications: ${process.env.EMAIL_USER ? 'Configured' : 'Not configured'}`);
-  console.log(`🌐 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`Backend server running on port ${PORT}`);
+  console.log(`Email notifications: ${transporter && emailTo ? 'Configured' : 'Not configured'}`);
+  console.log(`Allowed frontend origin: ${allowedOrigin}`);
+  console.log(`Health check: http://localhost:${PORT}/api/health`);
 });

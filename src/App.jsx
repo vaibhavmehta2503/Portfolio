@@ -1,909 +1,632 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  MdEmail, 
-  MdLocationOn, 
-  MdPerson, 
-  MdComputer, 
-  MdBuild,
-  MdSchool,
-  MdWork,
-  MdStar,
-  MdDownload,
-  MdMenu,
-  MdLightMode,
+import { motion } from 'framer-motion';
+import {
+  MdArrowOutward,
+  MdCheckCircle,
   MdDarkMode,
-  MdDescription
-} from "react-icons/md";
-import { RiAiGenerate2 } from "react-icons/ri";
-
-import { 
-  FaLinkedin, 
-  FaReact, 
-  FaHtml5, 
-  FaCss3Alt, 
-  FaJs, 
-  FaJava, 
-  FaGitAlt, 
-  FaFigma,
-  FaGithub,
-  FaCode,
-  FaDatabase,
-  FaMobile,
-  FaTrophy,
+  MdDownload,
+  MdEmail,
+  MdLightMode,
+  MdLocationOn,
+  MdMenu,
+  MdSend,
+  MdWorkOutline,
+} from 'react-icons/md';
+import {
+  FaAward,
   FaCertificate,
+  FaCode,
+  FaGithub,
   FaGraduationCap,
-  FaProjectDiagram,
-  FaAward
-} from "react-icons/fa";
-import { 
-  SiCplusplus, 
-  SiTailwindcss, 
-  SiVite, 
-  SiNodedotjs, 
-  SiMongodb,
+  FaJava,
+  FaLinkedin,
+  FaReact,
+  FaTrophy,
+  FaUsers,
+} from 'react-icons/fa';
+import {
+  SiCplusplus,
   SiExpress,
+  SiJavascript,
+  SiMongodb,
+  SiNodedotjs,
   SiPython,
-  SiTypescript
-} from "react-icons/si";
+  SiTailwindcss,
+} from 'react-icons/si';
 import './App.css';
+
+const CONTACT_EMAIL = 'vaibhavmehtajp098@gmail.com';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/vaibhav-mehta-8a8363283/';
+const CODOLIO_URL = 'https://codolio.com/profile/XuITBFTK';
+const CODOLIO_CARD_URL = 'https://codolio.com/profile/XuITBFTK/card';
+const navItems = ['Experience', 'Work', 'Coding', 'Skills', 'Contact'];
+
+const stats = [
+  { value: '8.53', label: 'B.Tech CSE CGPA' },
+  { value: '17+', label: 'Coding Ninjas badges' },
+  { value: '3-Star', label: 'HackerRank C++ / Problem Solving' },
+  { value: '500+', label: 'LinkedIn connections' },
+];
+
+const experienceHighlights = [
+  {
+    title: 'Software Developer Intern',
+    organization: 'Octave',
+    icon: MdWorkOutline,
+    summary:
+      'Excited to begin my internship journey at Octave, where I am gaining hands-on experience in software development, collaborating with experienced professionals, and contributing to real-world projects.',
+    proof: 'Jun 2026 - Present · 2 mos · Hyderabad, Telangana · Hybrid',
+  },
+  {
+    title: 'Technical Head',
+    organization: 'Emergians CEC-CGC',
+    icon: FaUsers,
+    summary:
+      'Leading technical coordination for the college community, supporting events, peer learning, and team-led initiatives.',
+    proof: 'Jul 2025 - Present · 1 yr 1 mo · Full-time',
+  },
+  {
+    title: 'Student Brand Ambassador',
+    organization: 'Naukri.com',
+    icon: FaAward,
+    summary:
+      'Represented Naukri.com on campus, promoting platform features, conducting outreach activities, and bridging the gap between student communities and career opportunities.',
+    proof: 'Aug 2025 - Jun 2026 · 11 mos · Naukri Campus',
+  },
+];
+
+const projects = [
+  {
+    title: 'DineQR',
+    role: 'Team Leader & Frontend Developer',
+    summary:
+      'Digital restaurant management system with QR menus, streamlined ordering, and a cleaner staff workflow for table operations.',
+    stack: ['React', 'Node.js', 'MongoDB'],
+    accent: 'blue',
+  },
+  {
+    title: 'MICO Hospital Website',
+    role: 'Team Leader & Frontend Developer',
+    summary:
+      'Hospital web experience with appointment booking and an AI chatbot flow for faster patient guidance.',
+    stack: ['HTML', 'CSS', 'AI Chatbot'],
+    accent: 'green',
+  },
+];
+
+const skillGroups = [
+  {
+    title: 'Languages',
+    icon: FaCode,
+    skills: [
+      { name: 'C++', icon: SiCplusplus },
+      { name: 'C', icon: SiCplusplus },
+      { name: 'Java', icon: FaJava },
+      { name: 'Python', icon: SiPython },
+      { name: 'JavaScript', icon: SiJavascript },
+    ],
+  },
+  {
+    title: 'Frontend',
+    icon: FaReact,
+    skills: [
+      { name: 'React', icon: FaReact },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'Responsive UI', icon: MdCheckCircle },
+    ],
+  },
+  {
+    title: 'Backend & Tools',
+    icon: SiNodedotjs,
+    skills: [
+      { name: 'Node.js', icon: SiNodedotjs },
+      { name: 'Express', icon: SiExpress },
+      { name: 'MongoDB', icon: SiMongodb },
+      { name: 'GitHub', icon: FaGithub },
+    ],
+  },
+];
+
+const achievements = [
+  '3-Star Badge in C++ and Problem Solving on HackerRank',
+  '17 Specialist Badges on Coding Ninjas',
+  'NPTEL Certification in Data Structures using C',
+  'Selected for the semifinal round of Smart India Hackathon 2024',
+  'Successfully concluded Build with AI Bootcamp 2026 with Emergians CEC-CGC',
+];
+
+const codingCardStats = [
+  { label: 'Primary profile', value: 'Codolio' },
+  { label: 'Problem solving', value: 'C++ / DSA' },
+  { label: 'Badges', value: '17+ CN' },
+  { label: 'HackerRank', value: '3-Star' },
+];
+
+const certifications = [
+  'Introduction to Data Science - Simplilearn',
+  'Career Essentials in Generative AI - Microsoft & LinkedIn',
+  'Introduction to Artificial Intelligence - LinkedIn Learning',
+];
+
+const education = [
+  {
+    degree: 'B.Tech Computer Science Engineering',
+    place: 'Chandigarh Group of Colleges, Landran',
+    period: '2023 - 2027',
+    score: '8.53 CGPA',
+  },
+  {
+    degree: 'Intermediate',
+    place: 'KK Public School',
+    period: '2021 - 2023',
+    score: '82.75%',
+  },
+  {
+    degree: 'Matriculation',
+    place: 'S.T. Thomas School',
+    period: '2020 - 2021',
+    score: '87%',
+  },
+];
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({ ...current, [name]: value }));
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
 
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setSubmitStatus({
+        type: 'success',
+        message: 'No contact API key configured. Opening your mail app to send...',
+      });
+      
+      const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}%0A%0AMessage:%0A${encodeURIComponent(formData.message)}`;
+      
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 1000);
+      
+      setFormData({ name: '', email: '', message: '' });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      const response = await fetch('http://localhost:5000/api/send-message', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Portfolio Message from ${formData.name}`,
+          from_name: 'Portfolio Contact Form',
+        }),
       });
 
       const result = await response.json();
 
-      if (result.success) {
-        setSubmitStatus({ type: 'success', message: 'Message sent successfully! I\'ll get back to you soon.' });
-        setFormData({ name: '', email: '', message: '' }); // Reset form
-      } else {
-        setSubmitStatus({ type: 'error', message: result.error || 'Failed to send message. Please try again.' });
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Unable to send message right now.');
       }
+
+      setSubmitStatus({
+        type: 'success',
+        message: "Message sent successfully! I'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      setSubmitStatus({ type: 'error', message: 'Network error. Please check your connection and try again.' });
+      setSubmitStatus({
+        type: 'error',
+        message: `Failed to send through web service: ${error.message}. Opening your mail app to send...`,
+      });
+      
+      const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}%0A%0AMessage:%0A${encodeURIComponent(formData.message)}`;
+      
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 2000);
+      
+      setFormData({ name: '', email: '', message: '' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const scaleIn = {
-    initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.5 }
-  };
+  const pageClass = darkMode ? 'theme-dark' : 'theme-light';
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 font-modern ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
-      {/* Navigation */}
-      <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <motion.div 
-              className="flex items-center"
-              whileHover={{ scale: 1.05 }}
+    <div className={`portfolio-shell ${pageClass}`}>
+      <header className="site-header">
+        <a className="brand-mark" href="#top" aria-label="Vaibhav Mehta home">
+          VM
+        </a>
+
+        <nav className={`nav-links ${menuOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>
+              {item}
+            </a>
+          ))}
+        </nav>
+
+        <div className="header-actions">
+          <button
+            className="icon-button"
+            type="button"
+            onClick={() => setDarkMode((current) => !current)}
+            aria-label="Toggle color theme"
+            title="Toggle theme"
+          >
+            {darkMode ? <MdLightMode /> : <MdDarkMode />}
+          </button>
+          <button
+            className="icon-button menu-button"
+            type="button"
+            onClick={() => setMenuOpen((current) => !current)}
+            aria-label="Open navigation"
+            title="Menu"
+          >
+            <MdMenu />
+          </button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section className="hero-section">
+          <div className="hero-grid">
+            <motion.div
+              className="hero-copy"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
             >
-              <span className="text-xl font-bold text-primary">VM</span>
+              <span className="eyebrow">
+                <MdLocationOn /> Khatauli, Muzaffarnagar
+              </span>
+              <h1>Vaibhav Mehta</h1>
+              <p className="hero-lede">
+                B.Tech CSE student building practical full-stack projects, clean interfaces,
+                and steady problem-solving habits.
+              </p>
+              <div className="hero-actions">
+                <a className="primary-action" href="#contact">
+                  <MdEmail /> Contact me
+                </a>
+                <a className="secondary-action" href="/Portfolio/Resume.pdf" target="_blank" rel="noreferrer">
+                  <MdDownload /> Resume
+                </a>
+              </div>
+              <div className="profile-links" aria-label="Profile links">
+                <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+                  <FaLinkedin /> LinkedIn <MdArrowOutward />
+                </a>
+                <a href={CODOLIO_URL} target="_blank" rel="noreferrer">
+                  <FaCode /> Codolio <MdArrowOutward />
+                </a>
+                <a href={`mailto:${CONTACT_EMAIL}`}>
+                  <MdEmail /> Email
+                </a>
+              </div>
             </motion.div>
-            <div className="flex items-center space-x-4">
-              <motion.button
-                onClick={toggleDarkMode}
-                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {darkMode ? <MdLightMode size={20} /> : <MdDarkMode size={20} />}
-              </motion.button>
-              <motion.button 
-                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <MdMenu size={20} />
-              </motion.button>
-            </div>
+
+            <motion.div
+              className="hero-panel"
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+            >
+              <div className="avatar-orbit">
+                <div className="avatar-core">VM</div>
+              </div>
+              <div className="panel-text">
+                <p>Current focus</p>
+                <h2>Frontend systems, backend APIs, and DSA practice.</h2>
+              </div>
+              <div className="mini-stack">
+                <span>React</span>
+                <span>Node</span>
+                <span>MongoDB</span>
+                <span>C++</span>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </motion.nav>
 
-      {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div 
-            className="mb-8"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <motion.div 
-              className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl font-bold"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              animate={{ 
-                boxShadow: [
-                  "0 0 0 0 rgba(59, 130, 246, 0.4)",
-                  "0 0 0 20px rgba(59, 130, 246, 0)",
-                  "0 0 0 0 rgba(59, 130, 246, 0)"
-                ]
-              }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                repeatDelay: 1
-              }}
-            >
-              VM
-            </motion.div>
-          </motion.div>
-          
-          <motion.h1 
-            className="font-classy text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Vaibhav Mehta
-          </motion.h1>
-          
-          <motion.p 
-            className="font-modern text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            B.Tech CSE Student | Aspiring Full-Stack Developer
-          </motion.p>
-          
-          <motion.p 
-            className="font-modern text-lg text-gray-600 dark:text-gray-300 mb-8 flex items-center justify-center gap-2"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <MdLocationOn className="text-red-500" />
-            Khatauli, Muzaffarnagar, India
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            <motion.a
-              href="mailto:vaibhavmehtajp098@gmail.com"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <MdEmail size={20} />
-              Email
-            </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/vaibhav-mehta-8a8363283"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaLinkedin size={20} />
-              LinkedIn
-            </motion.a>
-          </motion.div>
-        </div>
-      </section>
+          <div className="stats-strip" aria-label="Profile highlights">
+            {stats.map((stat) => (
+              <div className="stat-item" key={stat.label}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
-      {/* About Section */}
-      <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            className="font-classy text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            About Me
-          </motion.h2>
-          <motion.div 
-            className="bg-white dark:bg-gray-700 rounded-lg p-8 shadow-lg"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            whileHover={{ y: -5 }}
-          >
-            <p className="font-modern text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              A punctual and highly organized undergraduate with a strong commitment to completing tasks ahead of schedule. Known for maintaining a well-structured workflow and thriving in team environments. Possesses excellent communication and leadership skills, with a passion for exploring innovative avenues in Computer Science Engineering and delivering high-quality projects efficiently.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+        <section className="section-band about-band">
+          <div className="section-heading">
+            <span>About</span>
+            <h2>Organized, collaborative, and serious about shipping.</h2>
+          </div>
+          <p className="about-copy">
+            I am an undergraduate Computer Science student with a strong habit of planning
+            work early, communicating clearly, and leading teams through project delivery.
+            My best work sits at the intersection of usable interfaces, reliable logic, and
+            consistent learning through coding platforms and certifications.
+          </p>
+        </section>
 
-      {/* Skills Section */}
-      <section className="py-16 px-4 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            className="font-classy text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Technical Skills
-          </motion.h2>
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ y: -10, scale: 1.02 }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <FaCode className="text-primary text-2xl" />
-                <h3 className="font-classy text-xl font-semibold">Languages</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="font-modern flex items-center gap-3">
-                  <SiCplusplus className="text-blue-600 text-xl" />
-                  <span>C++</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <SiCplusplus className="text-blue-600 text-xl" />
-                  <span>C</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <FaJava className="text-orange-500 text-xl" />
-                  <span>Java</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <SiPython className="text-yellow-500 text-xl" />
-                  <span>Python</span>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ y: -10, scale: 1.02 }}
-            >
-              <div className="font-modern flex items-center gap-3 mb-4">
-                <FaReact className="text-blue-500 text-2xl" />
-                <h3 className="font-classy text-xl font-semibold">Web Development</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="font-modern flex items-center gap-3">
-                  <FaHtml5 className="text-orange-500 text-xl" />
-                  <span>HTML5</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <FaCss3Alt className="text-blue-500 text-xl" />
-                  <span>CSS3</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <FaJs className="text-yellow-400 text-xl" />
-                  <span>JavaScript</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <FaReact className="text-blue-500 text-xl" />
-                  <span>React</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <SiTailwindcss className="text-cyan-500 text-xl" />
-                  <span>Tailwind CSS</span>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ y: -10, scale: 1.02 }}
-            >
-              <div className="font-modern flex items-center gap-3 mb-4">
-                <MdBuild className="text-green-500 text-2xl" />
-                <h3 className="font-classy text-xl font-semibold">Tools & Others</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="font-modern flex items-center gap-3">
-                  <FaGitAlt className="text-orange-600 text-xl" />
-                  <span>Git</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <FaGithub className="text-gray-800 dark:text-white text-xl" />
-                  <span>GitHub</span>
-                </div>
-                <div className="font-modern flex items-center gap-3">
-                  <SiVite className="text-purple-500 text-xl" />
-                  <span>Vite</span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section className="py-16 px-4 bg-blue-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            className="font-classy text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Projects
-          </motion.h2>
-          <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ y: -10, scale: 1.02 }}
-            >
-              <div className="font-modern flex items-center gap-3 mb-4">
-                <FaProjectDiagram className="text-blue-500 text-2xl" />
-                <h3 className="font-classy text-xl font-semibold">DineQR – Digital Restaurant Management System</h3>
-              </div>
-              <p className="font-modern text-gray-600 dark:text-gray-300 mb-4">
-                A comprehensive digital restaurant management system that streamlines operations through QR-based menus and real-time order tracking.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">React.js</span>
-                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">Node.js</span>
-                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">MongoDB</span>
-              </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Role: Team Leader & Frontend Developer</p>
-            </motion.div>
-
-            <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ y: -10, scale: 1.02 }}
-            >
-              <div className="font-modern flex items-center gap-3 mb-4">
-                <FaProjectDiagram className="text-green-500 text-2xl" />
-                <h3 className="font-classy text-xl font-semibold">MICO Hospital Website</h3>
-              </div>
-              <p className="font-modern text-gray-600 dark:text-gray-300 mb-4">
-                A modern hospital website with integrated appointment booking system and AI-powered chatbot for patient assistance.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">HTML</span>
-                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">CSS</span>
-                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">AI Chatbot</span>
-              </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Role: Team Leader & Frontend Developer</p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Education Section */}
-      <section className="py-16 px-4 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            className="font-classy text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Education
-          </motion.h2>
-          <motion.div 
-            className="space-y-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ x: 10, scale: 1.02 }}
-            >
-              <div className="font-modern flex items-center gap-4">
-                <FaGraduationCap className="text-primary text-3xl" />
-                <div className="flex-1">
-                  <h3 className="font-classy text-xl font-semibold">B.Tech CSE</h3>
-                  <p className="font-modern text-gray-600 dark:text-gray-300">Chandigarh Group of Colleges, Landran</p>
-                  <p className="font-modern text-sm text-gray-500 dark:text-gray-400">2023–2027</p>
-                </div>
-                <span className="bg-primary text-white px-4 py-2 rounded-full font-semibold">8.53 CGPA</span>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ x: 10, scale: 1.02 }}
-            >
-              <div className="font-modern flex items-center gap-4">
-                <MdSchool className="text-secondary text-3xl" />
-                <div className="flex-1">
-                  <h3 className="font-classy text-xl font-semibold">Intermediate</h3>
-                  <p className="font-modern text-gray-600 dark:text-gray-300">KK Public School</p>
-                  <p className="font-modern text-sm text-gray-500 dark:text-gray-400">2021-2023</p>
-                </div>
-                <span className="bg-secondary text-white px-4 py-2 rounded-full font-semibold">82.75%</span>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ x: 10, scale: 1.02 }}
-            >
-              <div className="flex items-center gap-4">
-                <MdSchool className="text-accent text-3xl" />
-                <div className="flex-1">
-                  <h3 className="font-classy text-xl font-semibold">Matriculation</h3>
-                  <p className="font-modern text-gray-600 dark:text-gray-300">S.T. Thomas School</p>
-                  <p className="font-modern text-sm text-gray-500 dark:text-gray-400">2020-2021</p>
-                </div>
-                <span className="bg-accent text-white px-4 py-2 rounded-full font-semibold">87%</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Achievements Section */}
-      <section className="py-16 px-4 bg-green-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            className="font-classy text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Achievements
-          </motion.h2>
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
-              variants={scaleIn}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-            >
-              <FaTrophy className="text-yellow-500 text-3xl" />
-              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">3-Star Badge in C++ & Problem Solving on HackerRank</p>
-            </motion.div>
-
-            <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
-              variants={scaleIn}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-            >
-              <FaTrophy className="text-yellow-500 text-3xl" />
-              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">17 Specialist Badges on Coding Ninjas</p>
-            </motion.div>
-
-            <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
-              variants={scaleIn}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-            >
-              <FaCertificate className="text-green-500 text-3xl" />
-              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">NPTEL Certification in Data Structures using C</p>
-            </motion.div>
-
-            <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
-              variants={scaleIn}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-            >
-              <FaAward className="text-blue-500 text-3xl" />
-              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">Selected for Semifinal Round of SIH 2024</p>
-            </motion.div>
-
-            <motion.div 
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600 flex items-center gap-4"
-              variants={scaleIn}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-            >
-              <MdStar className="text-yellow-500 text-3xl" />
-              <p className="font-modern text-gray-700 dark:text-gray-300 font-medium">3× College Topper on Naukri 360 Leaderboard</p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Certifications Section */}
-      <section className="py-16 px-4 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            className="font-classy text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Certifications
-          </motion.h2>
-          <motion.div 
-            className="space-y-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ x: 10, scale: 1.02 }}
-            >
-              <div className="flex items-center gap-4">
-                <FaCertificate className="text-blue-500 text-3xl" />
-                <div className="flex-1">
-                  <h3 className="font-classy text-xl font-semibold">Introduction to Data Science</h3>
-                  <p className="font-modern text-gray-600 dark:text-gray-300">Simplilearn</p>
-                </div>
-                <div className="text-green-500 text-2xl">✓</div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ x: 10, scale: 1.02 }}
-            >
-              <div className="flex items-center gap-4">
-                <RiAiGenerate2  className="text-purple-500 text-3xl" />
-                <div className="flex-1">
-                  <h3 className="font-classy text-xl font-semibold">Career Essentials in Generative AI</h3>
-                  <p className="font-modern text-gray-600 dark:text-gray-300">Microsoft & LinkedIn</p>
-                </div>
-                <div className="text-green-500 text-2xl">✓</div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-600"
-              variants={scaleIn}
-              whileHover={{ x: 10, scale: 1.02 }}
-            >
-              <div className="flex items-center gap-4">
-                <FaCertificate className="text-green-500 text-3xl" />
-                <div className="flex-1">
-                  <h3 className="font-classy text-xl font-semibold">Introduction to Artificial Intelligence</h3>
-                  <p className="font-modern text-gray-600 dark:text-gray-300">LinkedIn Learning</p>
-                </div>
-                <div className="text-green-500 text-2xl">✓</div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Resume Section */}
-      <section className="py-16 px-4 bg-blue-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            className="font-classy text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Resume
-          </motion.h2>
-          <motion.div 
-            className="bg-white dark:bg-gray-700 rounded-lg p-8 shadow-lg text-center border border-gray-200 dark:border-gray-600"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            whileHover={{ y: -5 }}
-          >
-            <MdDescription className="text-6xl text-primary mx-auto mb-6" />
-            <h3 className="font-classy text-3xl font-bold mb-4">Vaibhav Mehta - Resume</h3>
-            <p className="font-modern text-lg text-gray-600 dark:text-gray-300 mb-8">
-              A comprehensive overview of my education, skills, projects, and achievements in a professional format.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="text-center">
-                <FaGraduationCap className="text-2xl text-primary mx-auto mb-2" />
-                <div className="font-classy font-semibold">Education</div>
-                <div className="font-modern text-sm text-gray-600 dark:text-gray-300">B.Tech CSE</div>
-              </div>
-              <div className="text-center">
-                <FaCode className="text-2xl text-secondary mx-auto mb-2" />
-                <div className="font-classy font-semibold">Skills</div>
-                <div className="font-modern text-sm text-gray-600 dark:text-gray-300">Full-Stack Development</div>
-              </div>
-              <div className="text-center">
-                <FaTrophy className="text-2xl text-accent mx-auto mb-2" />
-                <div className="font-classy font-semibold">Achievements</div>
-                <div className="font-modern text-sm text-gray-600 dark:text-gray-300">Multiple Certifications</div>
-              </div>
-            </div>
-            
-            <motion.a
-              href="/Portfolio/Resume.pdf"
-              download="Vaibhav_Mehta_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-8 rounded-lg text-lg flex items-center gap-3 mx-auto cursor-pointer"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => {
-                // Try to force download, but allow fallback to new tab
-                try {
-                  // Let the browser handle it naturally
-                  // If download doesn't work, it will open in new tab
-                } catch (error) {
-                  console.error('Download failed:', error);
-                  // Fallback is handled by the href and target="_blank"
-                }
-              }}
-            >
-              <MdDownload size={24} />
-              Download Resume
-            </motion.a>
-            
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-              Last updated: {new Date().toLocaleDateString()}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-16 px-4 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            className="font-classy text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Let's Connect
-          </motion.h2>
-          <motion.p 
-            className="font-modern text-center text-gray-600 dark:text-gray-300 mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            I'd love to hear from you! Let's discuss opportunities and collaborations.
-          </motion.p>
-          
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {/* Contact Info */}
-            <motion.div variants={fadeInUp}>
-              <h3 className="font-classy text-xl font-semibold mb-6">Get In Touch</h3>
-              <div className="space-y-4">
-                <motion.div 
-                  className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-lg border border-gray-200 dark:border-gray-600"
-                  whileHover={{ x: 10, scale: 1.02 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <MdEmail className="text-primary text-2xl" />
-                    <div>
-                      <p className="font-classy font-semibold">Email</p>
-                      <a href="mailto:vaibhavmehtajp098@gmail.com" className="text-primary hover:underline">
-                        vaibhavmehtajp098@gmail.com
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-                
-                <motion.div 
-                  className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-lg border border-gray-200 dark:border-gray-600"
-                  whileHover={{ x: 10, scale: 1.02 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <MdLocationOn className="text-red-500 text-2xl" />
-                    <div>
-                      <p className="font-classy font-semibold">Location</p>
-                      <p>Khatauli, Muzaffarnagar, India</p>
-                    </div>
-                  </div>
-                </motion.div>
-                
-                <motion.div 
-                  className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-lg border border-gray-200 dark:border-gray-600"
-                  whileHover={{ x: 10, scale: 1.02 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <FaLinkedin className="text-blue-600 text-2xl" />
-                    <div>
-                      <p className="font-classy font-semibold">LinkedIn</p>
-                      <a href="https://www.linkedin.com/in/vaibhav-mehta-8a8363283" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                        Connect on LinkedIn
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-            
-            {/* Contact Form */}
-            <motion.div variants={fadeInUp}>
-              <h3 className="font-classy text-xl font-semibold mb-6">Send Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Status Message */}
-                {submitStatus && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`p-4 rounded-lg ${
-                      submitStatus.type === 'success' 
-                        ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' 
-                        : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
-                    }`}
-                  >
-                    {submitStatus.message}
-                  </motion.div>
-                )}
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+        <section className="section-wrap" id="experience">
+          <div className="section-heading">
+            <span>Experience</span>
+            <h2>Beyond projects: leadership, outreach, and internship work.</h2>
+          </div>
+          <div className="experience-grid">
+            {experienceHighlights.map((item) => {
+              const ExperienceIcon = item.icon;
+              return (
+                <motion.article
+                  className="experience-card"
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: 0.5 }}
                 >
-                  <label className="block font-modern       text-sm font-medium mb-2">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="Your name"
-                  />
-                </motion.div>
-                
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                  <label className="block font-modern text-sm font-medium mb-2">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="your.email@example.com"
-                  />
-                </motion.div>
-                
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <label className="block font-modern           text-sm font-medium mb-2">Message</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows="4"
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent resize-none transition-all"
-                    placeholder="Your message..."
-                  ></textarea>
-                </motion.div>
-                
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full font-classy font-semibold py-3 px-6 rounded-lg transition-colors ${
-                    isSubmitting 
-                      ? 'bg-gray-400 cursor-not-allowed' 
-                      : 'bg-primary hover:bg-primary/90 text-white'
-                  }`}
-                  whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
-                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </motion.button>
-              </form>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+                  <div className="experience-icon">
+                    <ExperienceIcon />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <strong>{item.organization}</strong>
+                  <p>{item.summary}</p>
+                  <small>{item.proof}</small>
+                </motion.article>
+              );
+            })}
+          </div>
+        </section>
 
-      {/* Footer */}
-      <motion.footer 
-        className="py-8 px-4 bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="font-modern  text-gray-600 dark:text-gray-400">
-            © 2025 Vaibhav Mehta. All rights reserved.
-          </p>
-        </div>
-      </motion.footer>
+        <section className="section-wrap" id="work">
+          <div className="section-heading">
+            <span>Selected work</span>
+            <h2>Projects with real user flows.</h2>
+          </div>
+          <div className="project-grid">
+            {projects.map((project) => (
+              <motion.article
+                className={`project-card accent-${project.accent}`}
+                key={project.title}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.55 }}
+              >
+                <div className="project-icon">
+                  <MdWorkOutline />
+                </div>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+                <div className="tag-row">
+                  {project.stack.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+                <small>{project.role}</small>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-band coding-band" id="coding">
+          <div className="codolio-card">
+            <div className="codolio-card-header">
+              <div>
+                <span className="codolio-kicker">Coding profile</span>
+                <h2>Vaibhav Mehta on Codolio</h2>
+                <p>
+                  A compact profile card for recruiters to jump into my coding progress,
+                  badges, and problem-solving footprint.
+                </p>
+              </div>
+              <div className="codolio-avatar">VM</div>
+            </div>
+
+            <div className="codolio-stat-grid">
+              {codingCardStats.map((stat) => (
+                <div key={stat.label}>
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="codolio-footer">
+              <a href={CODOLIO_URL} target="_blank" rel="noreferrer">
+                <FaCode /> Open full Codolio profile <MdArrowOutward />
+              </a>
+              <a href={CODOLIO_CARD_URL} target="_blank" rel="noreferrer">
+                View Codolio card <MdArrowOutward />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-wrap" id="skills">
+          <div className="section-heading">
+            <span>Skills</span>
+            <h2>Tools I use to build and solve.</h2>
+          </div>
+          <div className="skill-grid">
+            {skillGroups.map((group) => {
+              const GroupIcon = group.icon;
+              return (
+                <article className="skill-card" key={group.title}>
+                  <div className="skill-title">
+                    <GroupIcon />
+                    <h3>{group.title}</h3>
+                  </div>
+                  <div className="skill-list">
+                    {group.skills.map((skill) => {
+                      const SkillIcon = skill.icon;
+                      return (
+                        <span key={skill.name}>
+                          <SkillIcon /> {skill.name}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="section-wrap two-column-section" id="education">
+          <div>
+            <div className="section-heading compact">
+              <span>Education</span>
+              <h2>Academic path</h2>
+            </div>
+            <div className="timeline">
+              {education.map((item) => (
+                <article className="timeline-item" key={item.degree}>
+                  <FaGraduationCap />
+                  <div>
+                    <h3>{item.degree}</h3>
+                    <p>{item.place}</p>
+                    <small>
+                      {item.period} - {item.score}
+                    </small>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="section-heading compact">
+              <span>Proof points</span>
+              <h2>Achievements</h2>
+            </div>
+            <div className="achievement-list">
+              {achievements.map((achievement, index) => (
+                <div className="achievement-item" key={achievement}>
+                  {index < 2 ? <FaTrophy /> : <FaAward />}
+                  <span>{achievement}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-band">
+          <div className="section-heading">
+            <span>Certifications</span>
+            <h2>Continuous learning record.</h2>
+          </div>
+          <div className="cert-row">
+            {certifications.map((certification) => (
+              <div className="cert-item" key={certification}>
+                <FaCertificate />
+                <span>{certification}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-wrap contact-section" id="contact">
+          <div className="section-heading">
+            <span>Contact</span>
+            <h2>Let's build the next opportunity.</h2>
+          </div>
+
+          <div className="contact-grid">
+            <aside className="contact-info">
+              <a href={`mailto:${CONTACT_EMAIL}`}>
+                <MdEmail />
+                <span>{CONTACT_EMAIL}</span>
+              </a>
+              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+                <FaLinkedin />
+                <span>LinkedIn profile</span>
+              </a>
+              <a href={CODOLIO_URL} target="_blank" rel="noreferrer">
+                <FaCode />
+                <span>Codolio coding profile</span>
+              </a>
+              <p>
+                Open to internship conversations, project collaborations, and technical
+                communities where I can contribute with consistency.
+              </p>
+            </aside>
+
+            <form className="contact-form" onSubmit={handleSubmit}>
+              {submitStatus && (
+                <div className={`form-status ${submitStatus.type}`}>{submitStatus.message}</div>
+              )}
+              <label>
+                Name
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Your name"
+                  required
+                />
+              </label>
+              <label>
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="you@example.com"
+                  required
+                />
+              </label>
+              <label>
+                Message
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Tell me about the role, project, or collaboration..."
+                  rows="5"
+                  required
+                />
+              </label>
+              <button type="submit" disabled={isSubmitting}>
+                <MdSend />
+                {isSubmitting ? 'Sending...' : 'Send message'}
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <span>(c) 2026 Vaibhav Mehta</span>
+        <a href="#top">Back to top</a>
+      </footer>
     </div>
   );
 }

@@ -1,99 +1,70 @@
-# Portfolio Backend - Messaging System
+# Portfolio Backend - Contact Form
 
-This is the backend server for handling contact form messages from your portfolio website.
+This backend lets the portfolio contact form send email directly from the website.
 
-## Features
+## Why A Backend Is Needed
 
-- ✅ Receive contact form messages
-- ✅ Email notifications when messages are received
-- ✅ Auto-reply to message senders
-- ✅ Message storage (in-memory)
-- ✅ Message management (mark as read, delete)
-- ✅ CORS enabled for frontend integration
+The React app cannot safely send Gmail directly by itself because that would expose your
+email password or app password in the browser. The contact form must call a backend, and
+the backend sends the email securely with Nodemailer.
 
-## Setup Instructions
+## Setup
 
-### 1. Install Dependencies
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-### 2. Configure Email Settings
-
-Create a `.env` file in the backend directory with the following variables:
+2. Create `backend/.env`:
 
 ```env
-# Email Configuration
 EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-
-# Server Configuration
+EMAIL_PASS=your-gmail-app-password
+EMAIL_TO=vaibhavmehtajp098@gmail.com
 PORT=5000
+CORS_ORIGIN=http://localhost:5173
 ```
 
-**Important:** For Gmail, you need to use an App Password, not your regular password:
-1. Enable 2-factor authentication on your Google account
-2. Go to Google Account settings > Security > App passwords
-3. Generate a new app password for "Mail"
-4. Use that password in the EMAIL_PASS variable
+3. Start the backend:
 
-### 3. Start the Server
-
-**Development mode (with auto-restart):**
-```bash
-npm run dev
-```
-
-**Production mode:**
 ```bash
 npm start
 ```
 
-The server will start on port 5000 (or the port specified in your .env file).
+4. Start the frontend in another terminal:
 
-## API Endpoints
+```bash
+npm run dev
+```
 
-### Send Message
-- **POST** `/api/send-message`
-- **Body:** `{ "name": "string", "email": "string", "message": "string" }`
+In development, the frontend automatically uses `http://localhost:5000`.
 
-### Get All Messages
-- **GET** `/api/messages`
-- Returns all stored messages
+## Production
 
-### Mark Message as Read
-- **PUT** `/api/messages/:id/read`
-- Marks a specific message as read
+Deploy this backend to a host such as Render, Railway, Fly.io, or a VPS. Then set this
+environment variable for the frontend before building:
 
-### Delete Message
-- **DELETE** `/api/messages/:id`
-- Deletes a specific message
+```env
+VITE_CONTACT_API_URL=https://your-backend-url.com
+```
 
-### Health Check
-- **GET** `/api/health`
-- Returns server status
+Without `VITE_CONTACT_API_URL` in production, the form will not open the user's email
+app. It will show a configuration message instead.
 
-## How It Works
+## Gmail App Password
 
-1. **Message Reception:** When someone submits the contact form, the message is stored and you receive an email notification
-2. **Auto-Reply:** The sender automatically receives a thank you email
-3. **Message Management:** You can view, mark as read, and delete messages through the API
+For Gmail, use an app password, not your regular password.
 
-## Frontend Integration
+1. Enable 2-step verification on your Google account.
+2. Go to Google Account settings > Security > App passwords.
+3. Generate an app password for Mail.
+4. Put that value in `EMAIL_PASS`.
 
-The backend is configured to accept requests from `http://localhost:5173` (Vite dev server). Update the CORS origin in `server.js` if needed.
+## Endpoints
 
-## Security Notes
-
-- This is a basic implementation using in-memory storage
-- For production, consider using a database (MongoDB, PostgreSQL, etc.)
-- Add rate limiting to prevent spam
-- Implement proper authentication for admin endpoints
-- Use HTTPS in production
-
-## Troubleshooting
-
-- **Email not sending:** Check your Gmail app password and 2FA settings
-- **CORS errors:** Verify the frontend URL matches the CORS origin in server.js
-- **Port conflicts:** Change the PORT in your .env file
+- `GET /api/health`
+- `POST /api/send-message`
+- `GET /api/messages`
+- `PUT /api/messages/:id/read`
+- `DELETE /api/messages/:id`
