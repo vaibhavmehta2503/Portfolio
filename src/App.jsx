@@ -45,7 +45,7 @@ const stats = [
   { value: '8.53', label: 'B.Tech CSE CGPA' },
   { value: '17+', label: 'Coding Ninjas badges' },
   { value: '3-Star', label: 'HackerRank C++ / Problem Solving' },
-  { value: '500+', label: 'LinkedIn connections' },
+  { value: '1500+', label: 'LinkedIn connections' },
 ];
 
 const experienceHighlights = [
@@ -159,13 +159,13 @@ const education = [
     degree: 'Intermediate',
     place: 'KK Public School',
     period: '2021 - 2023',
-    score: '82.75%',
+    score: '87.4%',
   },
   {
     degree: 'Matriculation',
     place: 'S.T. Thomas School',
     period: '2020 - 2021',
-    score: '87%',
+    score: '83.6%',
   },
 ];
 
@@ -186,64 +186,43 @@ function App() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-
-    if (!accessKey) {
-      setSubmitStatus({
-        type: 'success',
-        message: 'No contact API key configured. Opening your mail app to send...',
-      });
-      
-      const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}%0A%0AMessage:%0A${encodeURIComponent(formData.message)}`;
-      
-      setTimeout(() => {
-        window.location.href = mailtoUrl;
-      }, 1000);
-      
-      setFormData({ name: '', email: '', message: '' });
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          access_key: accessKey,
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `New Portfolio Message from ${formData.name}`,
-          from_name: 'Portfolio Contact Form',
+          _subject: `New Portfolio Message from ${formData.name}`,
         }),
       });
 
       const result = await response.json();
 
-      if (!response.ok || !result.success) {
+      if (!response.ok || result.success === "false") {
         throw new Error(result.message || 'Unable to send message right now.');
       }
 
       setSubmitStatus({
         type: 'success',
-        message: "Message sent successfully! I'll get back to you soon.",
+        message: "Message sent successfully! (Note: If this is the first time, check your email inbox to confirm activation from FormSubmit).",
       });
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       setSubmitStatus({
         type: 'error',
-        message: `Failed to send through web service: ${error.message}. Opening your mail app to send...`,
+        message: `Failed to submit: ${error.message || 'Form service error'}. Opening your mail app...`,
       });
       
       const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}%0A%0AMessage:%0A${encodeURIComponent(formData.message)}`;
       
       setTimeout(() => {
         window.location.href = mailtoUrl;
-      }, 2000);
+      }, 1500);
       
       setFormData({ name: '', email: '', message: '' });
     } finally {
@@ -339,12 +318,12 @@ function App() {
               </div>
               <div className="panel-text">
                 <p>Current focus</p>
-                <h2>Frontend systems, backend APIs, and DSA practice.</h2>
+                <h2>DevOps, AI engineering, and System Design.</h2>
               </div>
               <div className="mini-stack">
-                <span>React</span>
-                <span>Node</span>
-                <span>MongoDB</span>
+                <span>DevOps</span>
+                <span>AI</span>
+                <span>System Design</span>
                 <span>C++</span>
               </div>
             </motion.div>
